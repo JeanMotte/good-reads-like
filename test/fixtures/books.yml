@@ -1,0 +1,15 @@
+# Read about fixtures at https://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  author: one
+  category: one
+  title: MyString
+  published_date: 2024-07-17
+  number_of_pages: 1
+
+two:
+  author: two
+  category: two
+  title: MyString
+  published_date: 2024-07-17
+  number_of_pages: 1
