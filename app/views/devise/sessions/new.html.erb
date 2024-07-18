@@ -1,10 +1,7 @@
 <div class="flex flex-col content-center items-center">
-  <h2 class="font-semibold text-3xl flex place-content-center mb-10">Sign up</h2>
+  <h2 class="font-semibold text-3xl flex place-content-center mb-10">Log in</h2>
 
-
-
-  <%= form_for(resource, as: resource_name, url: registration_path(resource_name)) do |f| %>
-    <%= render "users/shared/error_messages", resource: resource %>
+  <%= form_for(resource, as: resource_name, url: session_path(resource_name)) do |f| %>
 
     <div class="grid grid-cols-2 gap-4">
       <div class="mb-3">
@@ -27,22 +24,22 @@
         <% if @minimum_password_length %>
         <em class="text-sm">(<%= @minimum_password_length %> characters minimum)</em>
         <% end %><br />
-        <%= f.password_field :password, autocomplete: "new-password", class:"bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500", required: true %>
+        <%= f.password_field :password, autocomplete: "current-password", class:"bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500", required: true %>
       </div>
 
-      <div class="mb-6">
-        <%= f.label :password_confirmation, class:"inline-block mb-2 font-medium text-gray-900 dark:text-white" %><br />
-        <%= f.password_field :password_confirmation, autocomplete: "new-password", class:"bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500", required: true %>
+      <% if devise_mapping.rememberable? %>
+        <div class="mb-5">
+          <%= f.check_box :remember_me, class:"rounded me-2" %>
+          <%= f.label :remember_me %>
+        </div>
+      <% end %>
       </div>
-    </div>
 
     <div class="actions flex place-content-center">
-      <%= f.submit "Sign up", class:"text-white font-semibold py-2 px-12 cursor-pointer bg-blue-500 rounded-xl" %>
+      <%= f.submit "Sign in", class:"text-white font-semibold py-2 px-12 cursor-pointer bg-blue-500 rounded-xl" %>
     </div>
   <% end %>
 
-  <div class="flex flex-col m-5 justify-center items-center">
-    <p>Already have an account?</p>
-    <span class="underline underline-offset-2"><%= render "users/shared/links" %></span>
-  </div>
-</div>
+    <div class="mt-5 underline underline-offset-2 flex flex-col items-center">
+      <%= render "users/shared/links" %>
+    </div>
